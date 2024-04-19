@@ -19,6 +19,7 @@ export default function ArticlesRouter({ api, hasExtension, isChrome }) {
     [strings.homeTab]: "/articles",
     [strings.saved]: "/articles/ownTexts",
     [strings.forYou]: "/articles/forYou",
+
   };
 
   if (LocalStorage.isStudent()) {
@@ -60,6 +61,17 @@ export default function ArticlesRouter({ api, hasExtension, isChrome }) {
           path="/articles/forYou"
           api={api}
           component={RecommendedArticles}
+        />
+
+        <PrivateRoute
+          path="/articles/forYou/cf"
+          api={api}
+          component={RecommendedArticles("cf")}
+        />
+        <PrivateRoute
+          path="/articles/forYou/mlt"
+          api={api}
+          component={RecommendedArticles("mlt")}
         />
 
         <PrivateRoute

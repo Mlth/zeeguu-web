@@ -9,15 +9,26 @@ import SortingButtons from "./SortingButtons";
 
 import * as s from "../components/TopMessage.sc";
 
-export default function OwnArticles({ api }) {
+export default function RecommendedArticles({ api, route }) {
   const [articleList, setArticleList] = useState(null);
 
   let originalList = articleList;
 
   if (articleList == null) {
-    api.getRecommendedArticles((articles) => {
+    if (route === "cf") {
+      api.getRecommendedArticlesCf((articles) => {
         setArticleList(articles);
-    });
+      });
+    } else if (route === "mlt") {
+      api.getRecommendedArticlesMlt((articles) => {
+      setArticleList(articles);
+     });
+    } else {
+      api.getRecommendedArticles((articles) => {
+      setArticleList(articles); 
+      });
+    }
+
   
 
     setTitle("Recommended Articles");
