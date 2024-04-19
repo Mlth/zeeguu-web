@@ -4,7 +4,9 @@ import qs from "qs";
 // articles
 // articles
 Zeeguu_API.prototype.getUserArticles = function (callback) {
-  this._getJSON("user_articles/recommended", (articles) => {
+  const endpoint = "user_articles/recommended/50/True"
+  //endpoint = 'user_articles/recommend/'
+  this._getJSON(endpoint, (articles) => {
     // sometimes we get duplicates from the server
     // deduplicate them here
     // fast deduplication cf. https://stackoverflow.com/a/64791605/1200070
