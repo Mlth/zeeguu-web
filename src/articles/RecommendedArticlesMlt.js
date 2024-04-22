@@ -9,17 +9,17 @@ import SortingButtons from "./SortingButtons";
 
 import * as s from "../components/TopMessage.sc";
 
-export default function RecommendedArticles({ api }) {
+export default function RecommendedArticlesMlt({ api }) {
   const [articleList, setArticleList] = useState(null);
 
   let originalList = articleList;
 
   if (articleList == null) {
      
-      api.getRecommendedArticles((articles) => {
+      api.getRecommendedArticlesMlt((articles) => {
       setArticleList(articles); 
       });
-    
+
     setTitle("Recommended Articles");
 
     return <LoadingAnimation />;

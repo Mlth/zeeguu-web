@@ -9,6 +9,9 @@ import strings from "../i18n/definitions";
 import OwnArticles from "./OwnArticles";
 import ReadingHistory from "../words/WordHistory";
 import RecommendedArticles from "./RecommendedArticles";
+import RecommendedArticlesCf from "./RecommendedArticlesCf";
+import RecommendedArticlesMlt from "./RecommendedArticlesMlt";
+
 
 import * as s from "../components/ColumnWidth.sc";
 import LocalStorage from "../assorted/LocalStorage";
@@ -64,14 +67,14 @@ export default function ArticlesRouter({ api, hasExtension, isChrome }) {
         />
 
         <PrivateRoute
-          path="/articles/forYou/cf"
+          path="/articles/cf"
           api={api}
-          component={RecommendedArticles("cf")}
+          component={RecommendedArticlesCf}
         />
         <PrivateRoute
-          path="/articles/forYou/mlt"
+          path="/articles/mlt"
           api={api}
-          component={RecommendedArticles("mlt")}
+          component={RecommendedArticlesMlt}
         />
 
         <PrivateRoute
