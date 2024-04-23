@@ -99,9 +99,12 @@ export default function ArticleOverview({
     let should_open_with_modal =
       doNotShowRedirectionModal_UserPreference === false;
 
-    if (should_open_in_zeeguu) return open_in_zeeguu;
+    /* if (should_open_in_zeeguu) return open_in_zeeguu;
     else if (should_open_with_modal) return open_externally_with_modal;
-    else return open_externally_without_modal;
+    else return open_externally_without_modal; */
+    if (should_open_in_zeeguu) return open_in_zeeguu;
+    else if (should_open_with_modal) return open_in_zeeguu;
+    else return open_in_zeeguu;
   }
 
   return (
