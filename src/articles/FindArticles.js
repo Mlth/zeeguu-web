@@ -139,13 +139,13 @@ export default function NewArticles() {
           key={each.id}
           article={each}
           api={api}
-          hasExtension={hasExtension}
+          /* hasExtension={hasExtension}
           doNotShowRedirectionModal_UserPreference={
             doNotShowRedirectionModal_UserPreference
           }
           setDoNotShowRedirectionModal_UserPreference={
             setDoNotShowRedirectionModal_UserPreference
-          }
+          } */
           onArticleClick={() => handleArticleClick(each.id, index)}
         />
       ))}
