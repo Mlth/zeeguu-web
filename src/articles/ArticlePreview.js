@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import moment from "moment";
 import { isMobile } from "../utils/misc/browserDetection";
 import * as s from "./ArticlePreview.sc";
@@ -7,6 +7,7 @@ import RedirectionNotificationModal from "../components/redirect_notification/Re
 import Feature from "../features/Feature";
 import { extractVideoIDFromURL } from "../utils/misc/youtube";
 import SmallSaveArticleButton from "./SmallSaveArticleButton";
+
 
 export default function ArticleOverview({
   article,
@@ -22,12 +23,17 @@ export default function ArticleOverview({
   const [isArticleSaved, setIsArticleSaved] = useState(
     article.has_personal_copy,
   );
+  const [articleInfo, setArticleInfo] = useState(null);
 
+  useEffect(() => {
+    api.getArticleInfo(article.id, (articleInfo) => {
+      setArticleInfo(articleInfo);
+    });
+  }, [api, article.id]);
   const handleArticleClick = () => {
     if (onArticleClick) {
-      onArticleClick(article.id);
-    }
-  };
+      onArticleClick(article.id);      }
+    };
 
   let topics = article.topics.split(" ").filter((each) => each !== "");
   let difficulty = Math.round(article.metrics.difficulty * 100) / 10;
@@ -107,6 +113,8 @@ export default function ArticleOverview({
     else return open_in_zeeguu;
   }
 
+  
+
   return (
     <s.ArticlePreview>
       <SmallSaveArticleButton
@@ -115,6 +123,12 @@ export default function ArticleOverview({
         isArticleSaved={isArticleSaved}
         setIsArticleSaved={setIsArticleSaved}
       />
+      
+      {articleInfo && (
+        <div>
+          {articleInfo.liked === true ? "Liked ✅" : ""}
+        </div>
+      )}
 
       <s.Title>{titleLink(article)}</s.Title>
       <s.ArticleContent>
